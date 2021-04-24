@@ -439,8 +439,19 @@ namespace objl
 
 			std::ifstream file(Path);
 
-			if (!file.is_open())
-				return false;
+			if (!file.is_open())  //vs的文件加载相对路径不是从.exe开始的。
+				return false;     
+
+			//不妨写一个有相对路径的文件，然后用搜索工具看看是生成在哪里了。然后就可以确定相对路径从哪里写了。
+			/*
+			std::string TestPath("../mytest.txt");
+			std::ofstream TestFile(TestPath, std::ios::out);
+			if (TestFile.is_open())
+			{
+				TestFile << "relative path " << std::endl;
+			}
+			TestFile.close();
+			*/
 
 			LoadedMeshes.clear();
 			LoadedVertices.clear();
